@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla Hotel Luxury | Roberto WebDev</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">TU LOGO AQUÍ</div>
+            <ul class="nav-links">
+                <li><a href="#">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#">Nosotros <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Historia</a></li>
+                        <br>
+                        <li><a href="#">Quito</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Habitaciones</a></li>
+                <li class="dropdown">
+                    <a href="#">Servicios <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Restaurante</a></li>
+                        <br>
+                        <li><a href="#">Galería de Arte</a></li>
+                        <br>
+                        <li><a href="#">Servicio de habitaciones</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="reservas.html" class="btn-reserva">Reservar</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+    <video autoplay muted loop playsinline preload="auto" class="hero-video">
+    <source src="assets/Quito.mp4" type="video/mp4">
+    Tu navegador no soporta el video.
+</video>
+
+    <div class="hero-text">
+        <h1>UN VIAJE EN EL TIEMPO</h1>
+        <p>Elegancia clásica y confort moderno en el corazón de la ciudad.</p>
+        <a href="#" class="btn-reserva">Reservar</a>
+    </div>
+    <div class="hero-socials">
+        <a href="https://instagram.com/tu-perfil" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com/tu-perfil" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/593XXXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+</section>
+
+<section class="introduccion-hotel revelar">
+    <div class="intro-container">
+        <div class="intro-superior">
+            <div class="intro-texto">
+                <h2 class="titulo-dorado">Hotel Boutique <br> Roberto</h2>
+                <h3 class="subtitulo-script">Un viaje en el tiempo</h3>
+                <p>Realiza un viaje en el tiempo hacia una época de elegancia clásica y encanto histórico. Cada espacio combina detalles arquitectónicos únicos con el confort moderno que mereces, creando una experiencia sofisticada y acogedora.</p>
+            </div>
+            
+            <div class="intro-imagenes-wrapper">
+                <img src="fachada-hotel.jpg" alt="Fachada Hotel" class="img-principal">
+                <img src="huesped-cafe.jpg" alt="Huésped" class="img-flotante">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="seccion-habitaciones revelar">
+    <div class="habitaciones-grid">
+        <div class="habitacion-card">
+            <img src="superior-queen.jpg" alt="Superior Queen">
+            <div class="habitacion-overlay"><span>Superior Queen</span></div>
+        </div>
+        <div class="habitacion-card">
+            <img src="premium-king.jpg" alt="Premium King">
+            <div class="habitacion-overlay"><span>Premium King</span></div>
+        </div>
+        <div class="habitacion-card">
+            <img src="doble-standard.jpg" alt="Doble Standard">
+            <div class="habitacion-overlay"><span>Doble Standard</span></div>
+        </div>
+        <div class="habitacion-card">
+            <img src="suite-premium.jpg" alt="Suite Doble Premium">
+            <div class="habitacion-overlay"><span>Suite Doble Premium</span></div>
+        </div>
+    </div>
+    <div class="intro-footer">
+        <a href="#" class="btn-oscuro"><i class="fas fa-bell"></i> Ver habitaciones</a>
+    </div>
+</section>
+
+    <section class="servicios">
+        <div class="grid-servicios">
+            <div class="card entrar-izquierda">
+                <div class="card-img" style="background-image: url('habitacion.jpg');"></div>
+                <h3>Habitaciones</h3>
+                <p>Espacios diseñados para el descanso absoluto.</p>
+            </div>
+            <div class="card entrar-izquierda">
+                <div class="card-img" style="background-image: url('bar.jpg');"></div>
+                <h3>Bar & Restobar</h3>
+                <p>Sabores únicos con ingredientes seleccionados.</p>
+            </div>
+            <div class="card entrar-izquierda">
+                <div class="card-img" style="background-image: url('traslado.jpg');"></div>
+                <h3>Traslados</h3>
+                <p>Servicio de transporte cómodo y seguro.</p>
+            </div>
+
+            <div class="card entrar-derecha">
+                <div class="card-img" style="background-image: url('wifi.jpg');"></div>
+                <h3>Wifi areas</h3>
+                <p>Acceso a internet de alta velocidad en todas las áreas comunes.</p>
+            </div>
+
+            <div class="card entrar-derecha">
+                <div class="card-img" style="background-image: url('eventos.jpg');"></div>
+                <h3>Eventos</h3>
+                <p>sala de eventos para celebraciones especiales.</p>
+            </div>
+
+            <div class="card entrar-derecha">
+                <div class="card-img" style="background-image: url('restaurantes.jpg');"></div>
+                <h3>Restaurantes</h3>
+                <p>Sabores unicos con ingredientes seleccionados.</p>
+            </div>
+        </div>
+    </section>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="css/style.css">
+
+<section class="galeria-seccion">
+    <div class="galeria-info">
+        <span class="subtitulo">CULTURA & ARTE</span>
+        <h2 style="color: #758494;">Galería de Arte </h2>
+        <p>Explore nuestra colección privada de arte colonial y contemporáneo...</p>
+        <a href="#" class="btn-linea" style="color: #758494;">Ver Colección</a>
+    </div>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide galeria-item">
+                <img src="assets/basilica.jpg" alt="Arte 1">
+            </div>
+            <div class="swiper-slide galeria-item">
+                <img src="assets/mitad-mundo.jpg" alt="Arte 2">
+            </div>
+            <div class="swiper-slide galeria-item">
+                <img src="assets/panecillo.jpg" alt="Arte 3">
+            </div>
+            <div class="swiper-slide galeria-item">
+                <img src="assets/teleferico.jpg" alt="Arte 4">
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+
+<section class="reviews">
+    <div class="reviews-container">
+        <h2 class="titulo-dorado revelar">Experiencias de Nuestros Huéspedes</h2>
+        <p class="subtitulo-script revelar">Lo que dicen quienes nos visitan</p>
+        
+        <div class="reviews-grid">
+            <div class="review-card entrar-izquierda">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Una estancia inolvidable. El diseño del hotel y la atención al detalle son excepcionales. Ubicación perfecta en el centro de Quito."</p>
+                <h4 class="review-author">- Carlos Mendoza</h4>
+            </div>
+
+            <div class="review-card revelar">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"El ambiente es súper profesional y limpio. Las animaciones de la web me convencieron y el lugar es aún mejor en persona."</p>
+                <h4 class="review-author">- Elena Rodríguez</h4>
+            </div>
+
+            <div class="review-card entrar-derecha">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"La mejor experiencia boutique en la ciudad. La combinación de modernidad y confort clásico es simplemente perfecta."</p>
+                <h4 class="review-author">- Juan Pablo Sanz</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+    <footer class="footer-principal">
+    <div class="footer-contenido">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-info-item">
+                    <i class="fas fa-map-marker-alt icono-dorado"></i>
+                    <div>
+                        <h4 class="footer-titulo-seccion">UBICACIÓN</h4>
+                        <p class="footer-texto-importante">-------.------.----.-----------.-------------------------<br>Quito – Ecuador</p>
+                    </div>
+                </div>
+                <div class="footer-social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <div class="footer-info-item">
+                    <i class="fas fa-envelope icono-dorado"></i>
+                    <div>
+                        <h4 class="footer-titulo-seccion">EMAIL</h4>
+                        <p class="footer-texto-importante">-----@------------.com</p>
+                    </div>
+                </div>
+                <div class="footer-info-item">
+                    <i class="fas fa-phone-alt icono-dorado"></i>
+                    <div>
+                        <h4 class="footer-titulo-seccion">RESERVACIONES</h4>
+                        <p class="footer-texto-importante">+593 999999999</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Habitaciones</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Galería de arte</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Políticas del hotel</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7915!2d-78.50!3d-0.20!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMTInMDAuMCJTIDc4wrAzMCcwMC4wIlc!5e0!3m2!1ses!2sec!4v1620000000000!5m2!1ses!2sec" 
+                    width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+    <a href="https://wa.me/593XXXXXXXXX" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+    </a>
+<script src="js/script.js"></script>
+</body>
+</html>
