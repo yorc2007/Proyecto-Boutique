@@ -12,7 +12,12 @@
     <header>
         <nav class="navbar">
             <div class="logo">TU LOGO AQUÍ</div>
-            <ul class="nav-links">
+            <button class="menu-toggle" id="menu-btn">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#">Inicio</a></li>
                 <li class="dropdown">
                     <a href="#">Nosotros <i class="fas fa-chevron-down"></i></a>
@@ -66,8 +71,8 @@
             </div>
             
             <div class="intro-imagenes-wrapper">
-                <img src="fachada-hotel.jpg" alt="Fachada Hotel" class="img-principal">
-                <img src="huesped-cafe.jpg" alt="Huésped" class="img-flotante">
+                <img src="assets/fachada-hotel.png" alt="Fachada Hotel" class="img-principal">
+                <img src="assets/huesped-hotel.png" alt="Huésped" class="img-flotante">
             </div>
         </div>
     </div>
@@ -76,19 +81,19 @@
 <section class="seccion-habitaciones revelar">
     <div class="habitaciones-grid">
         <div class="habitacion-card">
-            <img src="superior-queen.jpg" alt="Superior Queen">
+            <img src="assets/superior.png" alt="Superior Queen">
             <div class="habitacion-overlay"><span>Superior Queen</span></div>
         </div>
         <div class="habitacion-card">
-            <img src="premium-king.jpg" alt="Premium King">
+            <img src="assets/king.png" alt="Premium King">
             <div class="habitacion-overlay"><span>Premium King</span></div>
         </div>
         <div class="habitacion-card">
-            <img src="doble-standard.jpg" alt="Doble Standard">
+            <img src="assets/doble.png" alt="Doble Standard">
             <div class="habitacion-overlay"><span>Doble Standard</span></div>
         </div>
         <div class="habitacion-card">
-            <img src="suite-premium.jpg" alt="Suite Doble Premium">
+            <img src="assets/suite.png" alt="Suite Doble Premium">
             <div class="habitacion-overlay"><span>Suite Doble Premium</span></div>
         </div>
     </div>
@@ -100,35 +105,35 @@
     <section class="servicios">
         <div class="grid-servicios">
             <div class="card entrar-izquierda">
-                <div class="card-img" style="background-image: url('habitacion.jpg');"></div>
+                <div class="card-img" style="background-image: url('assets/superior.png');"></div>
                 <h3>Habitaciones</h3>
                 <p>Espacios diseñados para el descanso absoluto.</p>
             </div>
             <div class="card entrar-izquierda">
-                <div class="card-img" style="background-image: url('bar.jpg');"></div>
+                <div class="card-img" style="background-image: url('assets/bar.jpg');"></div>
                 <h3>Bar & Restobar</h3>
                 <p>Sabores únicos con ingredientes seleccionados.</p>
             </div>
             <div class="card entrar-izquierda">
-                <div class="card-img" style="background-image: url('traslado.jpg');"></div>
+                <div class="card-img" style="background-image: url('assets/traslado.jpg');"></div>
                 <h3>Traslados</h3>
                 <p>Servicio de transporte cómodo y seguro.</p>
             </div>
 
             <div class="card entrar-derecha">
-                <div class="card-img" style="background-image: url('wifi.jpg');"></div>
+                <div class="card-img" style="background-image: url('assets/wifi.Jpg');"></div>
                 <h3>Wifi areas</h3>
                 <p>Acceso a internet de alta velocidad en todas las áreas comunes.</p>
             </div>
 
             <div class="card entrar-derecha">
-                <div class="card-img" style="background-image: url('eventos.jpg');"></div>
+                <div class="card-img" style="background-image: url('assets/eventos.png');"></div>
                 <h3>Eventos</h3>
                 <p>sala de eventos para celebraciones especiales.</p>
             </div>
 
             <div class="card entrar-derecha">
-                <div class="card-img" style="background-image: url('restaurantes.jpg');"></div>
+                <div class="card-img" style="background-image: url('assets/restaurante.png');"></div>
                 <h3>Restaurantes</h3>
                 <p>Sabores unicos con ingredientes seleccionados.</p>
             </div>
