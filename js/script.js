@@ -1,66 +1,112 @@
-const swiper = new Swiper(".mySwiper", {
-  slidesPerView: 1.2, 
-  spaceBetween: 50,   // Aumenta este valor (ej. 40 o 50) para dar más aire
-  loop: true,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-    speed: 2000, // Aumenta la velocidad de transición para que sea más suave
-  },
-  breakpoints: {
-    // En pantallas grandes puedes dar incluso más espacio
-    1024: {
-      slidesPerView: 2.2,
-      spaceBetween: 80, 
-    }
-  }
-});
-
-// Función para activar animaciones al hacer scroll
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('activo');
-        }
-    });
-}, {
-    threshold: 0.1 // Se activa cuando el 10% del elemento es visible
-});
-
-// Seleccionamos todos los elementos con la clase revelar y los observamos
-const elementosARevelar = document.querySelectorAll('.revelar');
-elementosARevelar.forEach((el) => observer.observe(el));
-// Configuración del Observador para las animaciones de entrada
-const observerOptions = {
-    threshold: 0.15 // Se activa cuando el 15% del elemento es visible
-};
-
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('activo');
-        }
-    });
-}, observerOptions);
-
-// Aplicar el observador a todos los elementos con la clase 'revelar'
-document.querySelectorAll('.revelar').forEach((el) => revealObserver.observe(el));
 document.addEventListener('DOMContentLoaded', () => {
-    const videoHero = document.querySelector('.hero-video');
     
-    if (videoHero) {
-        // Forzamos el play por si el navegador lo pausó
-        videoHero.play().catch(error => {
-            console.log("El navegador bloqueó el autoplay inicialmente, reintentando...");
+    // 1. CONFIGURACIÓN DE SWIPER
+    const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1.2,
+        spaceBetween: 50,
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        speed: 2000,
+        breakpoints: {
+            1024: {
+                slidesPerView: 2.2,
+                spaceBetween: 80,
+            }
+        }
+    });
+
+    // 2. CONFIGURACIÓN DEL MENÚ DESPLEGABLE
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+
+    if (menuBtn && navLinks) {
+        // Limpieza del botón principal
+        menuBtn.replaceWith(menuBtn.cloneNode(true));
+        const newMenuBtn = document.getElementById('menu-btn');
+
+        // Evento para abrir/cerrar el menú principal
+        newMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            
+            // Al cerrar el menú principal, también limpiamos submenús
+            if (!navLinks.classList.contains('active')) {
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+            }
         });
 
-        // Evento de seguridad: Si por alguna razón se pausa, que siga
+        // Lógica para los Submenús (Nosotros / Servicios)
+        const dropdownLinks = document.querySelectorAll('.dropdown > a');
+        dropdownLinks.forEach(dropLink => {
+            dropLink.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Evita que el clic cierre el menú principal
+                    
+                    const parent = dropLink.parentElement;
+
+                    // Toggle: Si ya está abierto lo cierra, si no, cierra otros y abre este
+                    if (parent.classList.contains('open')) {
+                        parent.classList.remove('open');
+                    } else {
+                        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+                        parent.classList.add('open');
+                    }
+                }
+            });
+        });
+
+        // Cerrar el menú al hacer clic en un destino final
+        const finalDestinations = document.querySelectorAll('#nav-links a:not(.dropdown > a)');
+        finalDestinations.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+            });
+        });
+
+        // Cerrar si se hace clic en cualquier parte fuera del menú
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !newMenuBtn.contains(e.target)) {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+                }
+            }
+        });
+    }
+
+    // 3. OBSERVADOR DE ANIMACIONES (Intersection Observer)
+    const revealOptions = {
+        threshold: 0.15
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('activo');
+            }
+        });
+    }, revealOptions);
+
+    const selector = '.revelar, .entrar-izquierda, .entrar-derecha';
+    document.querySelectorAll(selector).forEach((el) => {
+        revealObserver.observe(el);
+    });
+
+    // 4. CONTROL DE VIDEO HERO
+    const videoHero = document.querySelector('.hero-video');
+    if (videoHero) {
+        videoHero.play().catch(() => {
+            console.log("Autoplay bloqueado por el navegador.");
+        });
+
         videoHero.addEventListener('pause', () => {
             videoHero.play();
         });
     }
-});
-// Activa las animaciones laterales cuando entran en el scroll
-document.querySelectorAll('.entrar-izquierda, .entrar-derecha').forEach((el) => {
-    revealObserver.observe(el);
 });

@@ -32,6 +32,23 @@ body {
     z-index: 1000;
 }
 
+/* Esconder el botón en computadoras */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: white;
+  margin: 4px 0;
+  border-radius: 10px;
+}
+
 .nav-links { display: flex; list-style: none; gap: 25px; }
 .nav-links a { 
     color: var(--text-white); 
@@ -714,4 +731,145 @@ h2, .titulo-dorado {
     border-top: 3px solid var(--gold);
     border-left: 3px solid var(--gold);
     z-index: 0;
+}
+/* Estilos para móviles (pantallas menores a 768px) */
+@media (max-width: 768px) {
+    /* 1. Asegurar que el contenedor no corte el menú */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding: 10px 20px;
+        height: 70px; /* Ajusta al alto de tu header */
+        overflow: visible !important;
+    }
+
+    /* 2. Forzamos la visibilidad del botón hamburguesa */
+    .menu-toggle {
+        display: flex !important;
+        order: 2; /* Lo posicionamos a la derecha */
+        z-index: 1001;
+        cursor: pointer;
+    }
+
+    .bar {
+        background-color: white; 
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+    }
+
+    /* 3. El botón de reservar lo movemos a la izquierda o centro si estorba */
+    .btn-reserva {
+        order: 3;
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    /* 4. EL MENÚ DESPLEGABLE */
+    #nav-links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Debe ser igual al alto de la navbar */
+        left: 0;
+        width: 100%;
+        background-color: rgba(30, 30, 30, 0.95); /* Semi-transparente para que se vea elegante */
+        padding: 20px 0;
+        margin: 0;
+        z-index: 1000;
+        list-style: none;
+    }
+
+    /* Clase que activa el JS */
+    #nav-links.active {
+        display: flex !important;
+    }
+
+    /* Links del menú */
+    .nav-links li {
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #444;
+    }
+
+    .nav-links li a {
+        color: white !important;
+        font-size: 18px;
+        text-decoration: none;
+    }
+
+    /* Aseguramos que los submenús se desplacen hacia abajo y no floten */
+.dropdown-content {
+   display: none;
+        position: static !important;
+        width: 100%;
+        background-color: rgba(45, 45, 45, 0.98); /* Un gris más oscuro y sutil */
+        padding: 0;
+        margin: 0;
+        border-left: 4px solid #c9a46d; /* Una línea dorada lateral para dar jerarquía */
+    }
+
+/* Estilo para los enlaces dentro del submenú */
+.dropdown-content li a {
+   padding: 12px 20px 12px 40px !important; /* Más espacio a la izquierda */
+        font-size: 15px !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #ddd !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Cuando el submenú está abierto */
+    .dropdown.open .dropdown-content {
+        display: block !important;
+        animation: fadeInDown 0.3s ease; /* Animación de entrada */
+    }
+
+    .dropdown i {
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.dropdown.open > a i {
+    transform: rotate(180deg); /* La flecha apunta hacia arriba al abrir */
+    color: #c9a46d; /* Cambia a dorado al abrir */
+}
+
+    /* --- Resto de tus estilos --- */
+    .hero h1 { font-size: 2rem; }
+
+    .habitaciones-grid, .grid-servicios {
+        grid-template-columns: 1fr 1fr !important; 
+        gap: 12px;
+        padding: 0;
+        display: grid;
+    }
+
+    .habitacion-card { height: 200px !important; }
+    .card-img { height: 140px !important; }
+
+    .intro-superior { flex-direction: column; text-align: center; }
+    .img-principal { width: 100%; height: 250px; }
+    .img-flotante { display: none; }
+
+    .galeria-seccion { flex-direction: column; padding: 50px 5%; }
+    .swiper { height: 350px; }
+    
+}
+
+    /* WhatsApp */
+.whatsapp-float {
+    position: fixed; bottom: 20px; right: 20px; background: #25d366;
+    color: #fff; width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 1000;
+}
+
+/* Animación simple */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
