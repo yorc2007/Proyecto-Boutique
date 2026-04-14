@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservaciones | Luxury Hotel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Ajustes específicos para que el formulario se vea increíble en el fondo oscuro */
+        .reserva-hero {
+            padding: 150px 10% 80px;
+            background: linear-gradient(rgba(26, 30, 35, 0.9), rgba(26, 30, 35, 0.9)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            background: var(--bg-secondary);
+            padding: 50px;
+            border: 1px solid #334155;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .form-group { margin-bottom: 25px; }
+        .form-group label {
+            display: block;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: #111418;
+            border: 1px solid #334155;
+            color: #fff;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--gold);
+            outline: none;
+            background: #1a1e23;
+        }
+
+        .btn-enviar {
+            width: 100%;
+            background: var(--gold);
+            color: #111;
+            border: none;
+            padding: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: 0.4s;
+            margin-top: 10px;
+        }
+
+        .btn-enviar:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">TU LOGO AQUÍ</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="index.html#nosotros">Nosotros <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="index.html#historia">Historia</a></li>
+                        <br>
+                        <li><a href="index.html#quito">Quito</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#habitaciones">Habitaciones</a></li>
+                <li class="dropdown">
+                    <a href="index.html#servicios">Servicios <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="index.html#restaurante">Restaurante</a></li>
+                        <br>
+                        <li><a href="index.html#galeria-de-arte">Galería de Arte</a></li>
+                        <br>
+                        <li><a href="index.html#servicio-de-habitaciones">Servicio de habitaciones</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="reservas.html" class="btn-reserva">Reservar</a>
+        </nav>
+    </header>
+
+    <main class="reserva-hero">
+        <h2 class="titulo-dorado revelar activo">Reserva tu Estancia</h2>
+        <p class="subtitulo-script revelar activo" style="margin-bottom: 40px;">Un refugio de elegancia te espera en Quito</p>
+
+        <div class="form-container revelar activo">
+            <form action="https://formspree.io/f/xgopjqyq" method="POST">
+                
+                <div class="form-group">
+                    <label>Nombre del Huésped</label>
+                    <input type="text" name="nombre" required placeholder="Nombre y Apellido">
+                </div>
+
+                <div class="form-group">
+                    <label>Correo Electrónico de Contacto</label>
+                    <input type="email" name="email" required placeholder="tu@correo.com">
+                </div>
+
+                <div style="display: flex; gap: 20px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label><i class="fas fa-calendar-check"></i> Check-In</label>
+                        <input type="date" name="fecha_entrada" required>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label><i class="fas fa-calendar-times"></i> Check-Out</label>
+                        <input type="date" name="fecha_salida" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Número de Huéspedes</label>
+                    <select name="personas">
+                        <option value="1">1 Persona</option>
+                        <option value="2">2 Personas</option>
+                        <option value="3">3 Personas</option>
+                        <option value="4+">4+ Personas / Grupo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Notas o Peticiones Especiales</label>
+                    <textarea name="mensaje" rows="3" placeholder="Detalles adicionales..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar">Enviar Solicitud de Reserva</button>
+            </form>
+        </div>
+    </main>
+
+   <footer class="footer-principal">
+    <div class="footer-contenido">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-info-item">
+                    <i class="fas fa-map-marker-alt icono-dorado"></i>
+                    <div>
+                        <h4 class="footer-titulo-seccion">UBICACIÓN</h4>
+                        <p class="footer-texto-importante">-------.------.----.-----------.-------------------------<br>Quito – Ecuador</p>
+                    </div>
+                </div>
+                <div class="footer-social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <div class="footer-info-item">
+                    <i class="fas fa-envelope icono-dorado"></i>
+                    <div>
+                        <h4 class="footer-titulo-seccion">EMAIL</h4>
+                        <p class="footer-texto-importante">-----@------------.com</p>
+                    </div>
+                </div>
+                <div class="footer-info-item">
+                    <i class="fas fa-phone-alt icono-dorado"></i>
+                    <div>
+                        <h4 class="footer-titulo-seccion">RESERVACIONES</h4>
+                        <p class="footer-texto-importante">+593 999999999</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Habitaciones</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Galería de arte</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Políticas del hotel</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7915!2d-78.50!3d-0.20!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMTInMDAuMCJTIDc4wrAzMCcwMC4wIlc!5e0!3m2!1ses!2sec!4v1620000000000!5m2!1ses!2sec" 
+                    width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    </footer>
+
+
+    <a href="https://wa.me/593999999999" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
