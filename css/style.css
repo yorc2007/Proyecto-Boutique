@@ -734,113 +734,70 @@ h2, .titulo-dorado {
 }
 /* Estilos para móviles (pantallas menores a 768px) */
 @media (max-width: 768px) {
-    /* 1. Asegurar que el contenedor no corte el menú */
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-        padding: 10px 20px;
-        height: 70px; /* Ajusta al alto de tu header */
-        overflow: visible !important;
+    /* 1. Navbar: Ajuste de espacio para que todo quepa en una línea o se acomode */
+     .navbar {
+        flex-wrap: wrap;
+        position: fixed; /* O sticky, según uses */
+        width: 100vw !important; /* Ocupa el 100% del ancho de la ventana (Viewport Width) */
+        justify-content: center;
+        max-width: 100% !important; 
+        margin: 0 !important;   /* Elimina cualquier margen que lo esté centrando */
+        left: 0 !important;
+        right: 0 !important;
+        padding-left: 20px;     /* Padding interno para que el logo no pegue al borde físico */
+        padding-right: 20px;
+        box-sizing: border-box;
+        transition: transform 0.4s ease-in-out; /* Animación de subida/bajada */
+        z-index: 2000;
+    }
+    .navbar-hidden {
+    transform: translateY(-100%); /* Lo mueve hacia arriba exactamente su propia altura */
     }
 
-    /* 2. Forzamos la visibilidad del botón hamburguesa */
-    .menu-toggle {
-        display: flex !important;
-        order: 2; /* Lo posicionamos a la derecha */
-        z-index: 1001;
-        cursor: pointer;
+    /* 3. Reconfiguración de los enlaces para que se vean como en PC pero pequeños */
+    .nav-links {
+        width: 100%; /* Los links ocuparán su propia fila al centro */
+        justify-content: center;
+        order: 2; /* Los pone debajo del logo */
     }
 
-    .bar {
-        background-color: white; 
-        display: block;
-        width: 25px;
-        height: 3px;
-        margin: 5px auto;
-    }
-
-    /* 3. El botón de reservar lo movemos a la izquierda o centro si estorba */
-    .btn-reserva {
-        order: 3;
-        font-size: 12px;
-        padding: 5px 10px;
-    }
-
-    /* 4. EL MENÚ DESPLEGABLE */
-    #nav-links {
-        display: none; 
-        flex-direction: column;
-        position: absolute;
-        top: 70px; /* Debe ser igual al alto de la navbar */
-        left: 0;
-        width: 100%;
-        background-color: rgba(30, 30, 30, 0.95); /* Semi-transparente para que se vea elegante */
-        padding: 20px 0;
-        margin: 0;
-        z-index: 1000;
-        list-style: none;
-    }
-
-    /* Clase que activa el JS */
-    #nav-links.active {
-        display: flex !important;
-    }
-
-    /* Links del menú */
     .nav-links li {
-        text-align: center;
-        padding: 15px 0;
-        border-bottom: 1px solid #444;
+        padding: 0;
+        border: none; /* Quitamos las líneas de separación de la lista móvil */
     }
 
     .nav-links li a {
-        color: white !important;
-        font-size: 18px;
-        text-decoration: none;
+        font-size: 13px !important; /* Texto más pequeño para que quepa */
+        padding: 5px;
+        letter-spacing: 0;
     }
 
-    /* Aseguramos que los submenús se desplacen hacia abajo y no floten */
-.dropdown-content {
-   display: none;
-        position: static !important;
-        width: 100%;
-        background-color: rgba(45, 45, 45, 0.98); /* Un gris más oscuro y sutil */
-        padding: 0;
-        margin: 0;
-        border-left: 4px solid #c9a46d; /* Una línea dorada lateral para dar jerarquía */
+    /* 4. Submenús (Dropdown): Los dejamos que funcionen por hover o los simplificamos */
+    .dropdown-content {
+        position: absolute !important; /* Vuelven a ser flotantes para no empujar el header */
+        background-color: var(--bg-secondary);
+        min-width: 140px;
     }
 
-/* Estilo para los enlaces dentro del submenú */
-.dropdown-content li a {
-   padding: 12px 20px 12px 40px !important; /* Más espacio a la izquierda */
-        font-size: 15px !important;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #ddd !important;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    /* Cuando el submenú está abierto */
-    .dropdown.open .dropdown-content {
+    .dropdown:hover .dropdown-content {
         display: block !important;
-        animation: fadeInDown 0.3s ease; /* Animación de entrada */
     }
 
     .dropdown i {
-    margin-left: 10px;
-    transition: transform 0.3s ease;
-    font-size: 0.8rem;
-}
+        font-size: 0.6rem; /* Icono de flecha más pequeño */
+        margin-left: 4px;
+    }
 
-.dropdown.open > a i {
-    transform: rotate(180deg); /* La flecha apunta hacia arriba al abrir */
-    color: #c9a46d; /* Cambia a dorado al abrir */
-}
+    /* 5. Botón Reserva: Reducido para ahorrar espacio */
+    .btn-reserva {
+        order: 3;
+        font-size: 11px;
+        padding: 6px 12px;
+        white-space: nowrap; /* Evita que el texto se parta en dos líneas */
+    }
 
-    /* --- Resto de tus estilos --- */
-    .hero h1 { font-size: 2rem; }
+    /* --- Resto de tus estilos de la página (Mantenidos) --- */
+    .hero h1 { font-size: 1.8rem; }
 
     .habitaciones-grid, .grid-servicios {
         grid-template-columns: 1fr 1fr !important; 
@@ -849,19 +806,18 @@ h2, .titulo-dorado {
         display: grid;
     }
 
-    .habitacion-card { height: 200px !important; }
-    .card-img { height: 140px !important; }
+    .habitacion-card { height: 180px !important; }
+    .card-img { height: 120px !important; }
 
     .intro-superior { flex-direction: column; text-align: center; }
     .img-principal { width: 100%; height: 250px; }
     .img-flotante { display: none; }
 
-    .galeria-seccion { flex-direction: column; padding: 50px 5%; }
-    .swiper { height: 350px; }
-    
+    .galeria-seccion { flex-direction: column; padding: 40px 5%; }
+    .swiper { height: 300px; }
 }
 
-    /* WhatsApp */
+/* WhatsApp y Animaciones se mantienen igual */
 .whatsapp-float {
     position: fixed; bottom: 20px; right: 20px; background: #25d366;
     color: #fff; width: 50px; height: 50px; border-radius: 50%;

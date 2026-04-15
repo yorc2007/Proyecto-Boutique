@@ -1,4 +1,3 @@
-/* --- 1. Estilos Base del Menú (Para todas las pantallas) --- */
 :root {
     /* Nueva Paleta: Gris Oxford y Carbón (Elegancia pura sin usar blanco) */
     --bg-main: #1a1e23;       /* Azul grisáceo muy oscuro (Fondo principal) */
@@ -26,7 +25,7 @@ body {
     padding: 15px 5%; 
     background: rgba(17, 20, 24, 0.95); /* Fondo oscuro sólido */
     border-bottom: 1px solid var(--gold);
-    position: relative; 
+    position: fixed; 
     width: 90%; 
     left: 0; right: 0; margin: auto;
     top: 0; 
@@ -60,10 +59,6 @@ body {
     text-decoration: none;
 }
 
-.nav-links li {
-    position: relative; /* Necesario para que el dropdown flote justo debajo */
-    padding: 15px 20px;
-}
 .nav-links a:hover { color: var(--gold); }
 .btn-reserva {
     background: linear-gradient(135deg, var(--gold), var(--gold-light));
@@ -73,7 +68,11 @@ body {
     padding: 10px 25px; border-radius: 2px; text-decoration: none; font-weight: bold;
 }
 
-/* Estilos de los Dropdowns (Submenús) */
+h2, .titulo-dorado {
+    color: var(--bg-dark);
+}
+
+/* Dropdown Menu */
 .dropdown { position: relative; }
 .dropdown-content {
     display: none; position: absolute; background: var(--bg-dark);
@@ -81,31 +80,91 @@ body {
 }
 .dropdown:hover .dropdown-content { display: block; }
 
-/* Mostrar el submenú al pasar el mouse */
-.nav-links li:hover > .dropdown-content {
-    display: block;
+.galeria-header {
+    padding: 150px 5% 60px;
+    text-align: center;
+    background: linear-gradient(rgba(26, 30, 35, 0.8), rgba(26, 30, 35, 0.9)), url('img/hero-galeria.jpg');
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-h2, .titulo-dorado {
-    color: var(--bg-dark);
+.galeria-header h1 {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
 }
 
-
-/* --- 2. El Icono de Hamburguesa (Oculto en escritorio) --- */
-.burger {
-    display: none;
-    cursor: pointer;
+.contenedor-galeria {
+    padding: 60px 10%;
+    background-color: var(--bg-main);
 }
 
-.burger div {
-    width: 25px;
-    height: 3px;
-    background-color: #fff; /* Líneas blancas */
-    margin: 5px;
-    transition: all 0.3s ease;
+.grid-turismo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
 }
 
----Footer---
+/* Card Estilo Luxury */
+.card-lugar {
+    background-color: var(--bg-secondary);
+    border-bottom: 3px solid transparent;
+    transition: all 0.5s ease;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.card-lugar:hover {
+    border-bottom: 3px solid var(--gold);
+    transform: translateY(-10px);
+}
+
+.img-wrapper {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.card-lugar:hover .img-wrapper img {
+    transform: scale(1.15);
+}
+
+.overlay-dorado {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(transparent, rgba(197, 160, 89, 0.2));
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.card-lugar:hover .overlay-dorado {
+    opacity: 1;
+}
+
+.info-lugar {
+    padding: 25px;
+}
+
+.info-lugar h3 {
+    color: var(--gold);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.info-lugar p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
 
 .footer-principal {
     background-color: var(--accent-dark);
@@ -113,7 +172,7 @@ h2, .titulo-dorado {
     padding-top: 0;
 }
 
-/* Franja de imágenes */
+/* FOOTER */
 .footer-instagram-feed {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -295,38 +354,73 @@ h2, .titulo-dorado {
     height: 45px;
 }
 
-.whatsapp-float {
-    position: fixed;
+/* Estado inicial para todos */
+.revelar, .entrar-izquierda, .entrar-derecha {
+    opacity: 0;
+    transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+}
+
+/* Direcciones específicas */
+.entrar-izquierda {
+    transform: translateX(-100px); /* Viene desde la izquierda */
+}
+
+.entrar-derecha {
+    transform: translateX(100px); /* Viene desde la derecha */
+}
+
+.revelar {
+    transform: translateY(50px); /* El estándar viene desde abajo */
+}
+
+/* ESTADO ACTIVO: Cuando el JS añade la clase, todos van a su posición original */
+.activo {
+    opacity: 1 !important;
+    transform: translate(0) !important;
+}
+
+.revelar, .entrar-izquierda, .entrar-derecha {
+    opacity: 0;
+    /* Aumentamos el tiempo a 1.5s para una sensación de lujo */
+    transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1); 
+    will-change: transform, opacity; /* Optimiza el rendimiento */
+}
+/* Animación de solo aparición (Fade In) */
+.aparicion {
+    opacity: 0;
+    transition: opacity 2s ease-in-out; /* Un poco más lenta para que sea sutil */
+    will-change: opacity;
+}
+
+/* Estado activo cuando el JS lo detecta */
+.aparicion.activo {
+    opacity: 1 !important;
+}
+
+/* Estilo para el divisor dorado */
+.divisor-dorado {
     width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366; /* Verde oficial de WhatsApp */
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: 0.3s;
+    height: 2px;
+    background-color: #c9a46d; /* Tu color dorado */
+    margin: 20px auto;
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #128c7e;
+/* Estilo para el texto extra */
+.subtitulo-galeria {
+    display: block;
+    max-width: 600px;
+    margin: 15px auto 40px auto; /* El margen de 40px abajo empuja las fotos */
+    font-size: 1.1rem;
+    color: #bbb;
+    font-style: italic;
+    line-height: 1.6;
 }
 
-/* ============================================================
-   MEDIA QUERY: Estilos Móviles (Pantallas < 768px)
-   ============================================================ */
-
+/* Responsive */
 @media (max-width: 768px) {
     /* 1. Asegurar que el contenedor no corte el menú */
-      .navbar {
+     .navbar {
         flex-wrap: wrap;
         position: fixed; /* O sticky, según uses */
         width: 100vw !important; /* Ocupa el 100% del ancho de la ventana (Viewport Width) */
@@ -345,7 +439,6 @@ h2, .titulo-dorado {
     transform: translateY(-100%); /* Lo mueve hacia arriba exactamente su propia altura */
     }
 
-    /* 3. Reconfiguración de los enlaces para que se vean como en PC pero pequeños */
     .nav-links {
         width: 100%; /* Los links ocuparán su propia fila al centro */
         justify-content: center;
@@ -387,133 +480,66 @@ h2, .titulo-dorado {
         white-space: nowrap; /* Evita que el texto se parta en dos líneas */
     }
 
-    /* Animación de los enlaces (Fade-in) */
-    @keyframes navLinkFade {
-        from {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0px);
-        }
-    }
-
-    /* Transformación de la hamburguesa a 'X' al estar abierto */
-    .toggle .line1 {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .toggle .line2 {
-        opacity: 0;
-    }
-    .toggle .line3 {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-    .form-container {
-        width: 90% !important;    /* Ocupa el 90% del ancho de la pantalla */
-        max-width: 450px;         /* Pero que no pase de 450px para que no se estire de más */
-        margin: 0 auto;           /* Lo centramos horizontalmente */
-        padding: 20px !important; /* Reducimos el espacio interno para que no sea tan gigante */
-        box-sizing: border-box;   /* Para que el padding no afecte el ancho total */
-    }
-
-    /* 2. Ajustamos los títulos del formulario para que no ocupen tanto espacio */
-    .form-container h2, 
-    .form-container label {
-        font-size: 0.9rem !important; /* Un poco más pequeña la letra */
-        letter-spacing: 1px;
-    }
-
-    /* 3. Ajustamos los campos de entrada (inputs) */
-   .form-container input,
-    .form-container select,
-    .form-container textarea {
-    width: 100% !important;    /* Ocupa el 100% del espacio disponible */
-    box-sizing: border-box !important; /* Mantiene el padding por dentro del cuadro */
-    max-width: 100%;           /* Garantiza que nunca sea más ancho que su contenedor */
-    display: block;
-    }
-
-    .check-container {
-    display: flex;
-    gap: 10px;
-}
-
-.check-container div {
-    flex: 1; /* Hace que cada cuadro de fecha ocupe la mitad exacta */
-}
-
-    /* 4. El botón de envío también debe ser proporcional */
-    .btn-enviar-reserva {
+    /* 1. Forzamos el contenedor a tener 2 columnas */
+    .grid-turismo {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* Dos columnas iguales */
+        gap: 12px !important; /* Espacio entre tarjetas */
         padding: 15px !important;
-        font-size: 1rem !important;
+        width: 100% !important;
     }
 
+    /* 2. Ajustamos las tarjetas para que no se vean gigantes */
+    .card-lugar {
+        width: 100% !important;
+        margin-bottom: 0 !important; /* El gap del grid ya se encarga del espacio */
+        display: flex;
+        flex-direction: column;
+    }
 
-    /* --- 2. SECCIÓN HERO (El fondo oscuro con el texto principal) --- */
-    .reserva-hero {
-        /* Reducimos el padding excesivo que se ve en la imagen (150px) */
-        padding: 80px 20px 60px 20px !important; 
+    /* 3. Ajuste de la imagen para que todas midan lo mismo */
+    .img-wrapper {
+        height: 240px !important; /* Altura controlada para móviles */
+        overflow: hidden;
+    }
+
+    .img-wrapper img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* Evita que las fotos se estiren o aplasten */
+    }
+
+    /* 4. Ajuste de textos para que quepan en el espacio pequeño */
+    .info-lugar {
+        padding: 10px !important;
+    }
+
+    .info-lugar h3 {
+        font-size: 18px !important; /* Título más pequeño */
+        margin-bottom: 5px !important;
+        color: var(--gold);
         text-align: center;
     }
 
-    /* Ajuste de los títulos dorados */
-    .reserva-hero h2 {
-        font-size: 1.8rem !important; /* Un poco más pequeño */
-        line-height: 1.3;
-        margin-bottom: 15px;
-        color: #c4a77d; /* Dorado */
+    .info-lugar p {
+        font-size: 14px !important; /* Descripción pequeña pero legible */
+        line-height: 1.3 !important;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-align: center;
     }
 
-    /* --- 3. EL FORMULARIO DE RESERVAS (Inputs oscuros) --- */
-    #form_reservas {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 15px !important;
-    }
-
-    /* Arreglamos los inputs para que ocupen todo el ancho y tengan buen tamaño táctil */
-    #form_reservas input,
-    #form_reservas textarea,
-    #form_reservas select {
-        width: 100% !important;
-        margin-bottom: 20px !important;
-        padding: 15px !important; /* Más alto */
-        font-size: 1rem !important;
-        background-color: #1a1e23 !important; /* Tu color oscuro de input */
-        color: #fff !important;
-        border: 1px solid #3a4149 !important; /* Borde sutil */
-        border-radius: 5px;
-    }
-
-    /* Arreglamos las etiquetas doradas (labels) */
-    #form_reservas label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #c4a77d; /* Dorado */
-        text-align: left;
-    }
-
-    /* --- 4. BOTÓN ENVIAR (El botón dorado grande) --- */
-    .btn_enviar_reserva {
-        width: 100% !important;
-        padding: 18px !important;
-        background-color: #c4a77d !important; /* Fondo dorado */
-        color: #000 !important; /* Texto negro */
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.1rem;
-        cursor: pointer;
-    }
-       /* WhatsApp */
+    /* WhatsApp */
 .whatsapp-float {
     position: fixed; bottom: 20px; right: 20px; background: #25d366;
     color: #fff; width: 50px; height: 50px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center; font-size: 24px; z-index: 1000;
 }
 
+/* Animación simple */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 }
